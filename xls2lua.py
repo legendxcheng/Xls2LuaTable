@@ -269,8 +269,9 @@ def write_to_lua_script(excel, output_root):
                 + format_str(item_name).replace(" ", "_")  + "\n")
 
         outfp.write("\n\n")
-        outfp.write("return " + table_name)
-        outfp.write("\n\n")
+        # outfp.write("return " + table_name)
+        outfp.write("if data == nil then\n  data = {}\nend\n")
+        outfp.write("data[\"" + table_name + "\"] = " + table_name)
         outfp.close()
 
 def logPrint(ss):
